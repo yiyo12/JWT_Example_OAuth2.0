@@ -1,0 +1,19 @@
+server:
+  port: 8085
+  error:
+    include-stacktrace: never #quitamos el trace del mensaje mostrado al cliente
+# Estas configuraciones son las que estan plasmadas en el archivo JWT IO PROPERTIES
+jms:
+  jwt:
+    security:
+      enable: true
+    timezone: "America/bogota"
+    issuer: "JC_example_jwt" #Es para saber a nombre de quien se esta creando el token
+    token:
+      auth:
+        path: "/v1.0/oauth/client_credential/accesstoken"
+      secret: "este es la frase secreta que nadie debe conocer solo la app"
+      expires-in: 60 #3600 son segundos esto es equivalente a 1 hr
+    excluded:
+      path: "/v1.0/multi,/v1.0/otraexclusion" #Son para rutas que no vayan a ser necesarias pasar por el filtro de autorizacion es decir publicas
+
